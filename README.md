@@ -5,7 +5,7 @@ A Python script for automatically parsing laboratory instrument CSV outputs and 
 ## Requirements
 
 - Python 3.6+
-- 
+
 ## Installation
 
 ```bash
