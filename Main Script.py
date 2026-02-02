@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Instrument CSV to SQL Database Importer
 
