@@ -1,16 +1,43 @@
 # Instrument CSV to SQL Importer
 
-A Python script for automatically parsing laboratory instrument CSV outputs and importing them into a SQL database, eliminating manual data entry.
+A robust Python script for automatically parsing laboratory instrument CSV outputs and importing them into a SQL database, eliminating manual data entry.
+
+## Features
+
+- ✅ **Automatic Table Creation** - Dynamically creates tables based on CSV structure
+- ✅ **Type Inference** - Automatically detects column data types (INTEGER, REAL, TEXT)
+- ✅ **Batch Processing** - Efficiently handles large CSV files
+- ✅ **Error Handling** - Comprehensive logging and error recovery
+- ✅ **Duplicate Detection** - Tracks source files to avoid re-importing
+- ✅ **Directory Import** - Process multiple CSV files at once
+- ✅ **Column Sanitization** - Handles special characters in column names
+- ✅ **Metadata Tracking** - Automatically adds import timestamps and source file info
 
 ## Requirements
 
 - Python 3.6+
+- No external dependencies (uses built-in libraries only)
 
 ## Installation
+
+Simply download the `csv_to_sql.py` script - no installation required!
 
 ```bash
 # Make executable (optional)
 chmod +x csv_to_sql.py
+```
+
+**To use as a module in your Python code:**
+Just ensure `csv_to_sql.py` is in the same directory as your script, or in your Python path.
+
+```python
+# If csv_to_sql.py is in the same directory:
+from csv_to_sql import InstrumentCSVImporter
+
+# Or add the directory to your path:
+import sys
+sys.path.append('/path/to/csv_to_sql/')
+from csv_to_sql import InstrumentCSVImporter
 ```
 
 ## Quick Start
@@ -39,7 +66,10 @@ python csv_to_sql.py large_file.csv -b 5000
 
 ### Python API Usage
 
+**Important:** Place `csv_to_sql.py` in the same directory as your script, or add it to your Python path.
+
 ```python
+# Import the class (csv_to_sql.py must be in same directory or in Python path)
 from csv_to_sql import InstrumentCSVImporter
 
 # Initialize importer
@@ -148,6 +178,32 @@ The script handles:
 - Batch insert failures
 
 Errors are logged but don't stop the entire import process.
+
+## Use Cases
+
+### Laboratory Instruments
+```bash
+# HPLC, GC-MS, Spectrophotometer outputs
+python csv_to_sql.py /lab/instruments/hplc/ -d lab_results.db
+```
+
+### IoT Sensor Data
+```bash
+# Temperature, pressure, humidity sensors
+python csv_to_sql.py sensor_data.csv -t environmental_data
+```
+
+### Quality Control
+```bash
+# QC test results
+python csv_to_sql.py qc_results/ -d quality_control.db --pattern "QC_*.csv"
+```
+
+### Data Migration
+```bash
+# Migrate legacy CSV data
+python csv_to_sql.py legacy_data/ -d migrated.db -b 10000
+```
 
 ## Querying the Data
 
